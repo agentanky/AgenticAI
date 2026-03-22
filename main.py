@@ -7,19 +7,22 @@ if api_key is None:
     raise RuntimeError("unable to located api key")
 
 from google import genai
+from google.genai import types
 
 client = genai.Client(api_key=api_key)
+
+
 
 
 parser = argparse.ArgumentParser(description="command line tool")
 parser.add_argument("user_prompt", type=str, help="User prompt")
 args = parser.parse_args()
 
-
+messages = [types.Content(role="user", parts=[types.Part(text=args.user_prompt)])]
 def main():
 
     response = client.models.generate_content(
-    model = "gemini-2.5-flash", contents=args.user_prompt
+    model = "gemini-2.5-flash", contents=messages
 )
     if response.usage_metadata is None:
         raise RuntimeError("no token information available")
