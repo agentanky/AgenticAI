@@ -1,6 +1,8 @@
 # AgenticAI
 
-A command-line AI coding agent built in Python using the Google Gemini API — an implementation of tools like Claude Code or Cursor's Agent Mode. The agent autonomously reasons, selects tools, and iterates in a feedback loop to find and fix bugs in real projects.
+> **Status: In Progress** — actively building and extending.
+
+A command-line AI coding agent built in Python using the Google Gemini API — a toy implementation of tools like Claude Code or Cursor's Agent Mode. The agent autonomously reasons, selects tools, and iterates in a feedback loop to find and fix bugs in real projects.
 
 ---
 
@@ -144,4 +146,3 @@ uv run main.py "what files are in the root?" --verbose
 - **Sandboxing** — restricting an LLM's file system access using path validation
 - **Token awareness** — monitoring prompt and response token counts to stay within API limits
 - **Robust tool design** — returning errors as strings so the agent can self-correct
-
