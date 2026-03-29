@@ -6,6 +6,8 @@ from google import genai
 from google.genai import types
 from prompts import system_prompt
 
+from call_function import available_functions
+
 
 def main():
 
@@ -29,7 +31,7 @@ def main():
 
     response = client.models.generate_content(
     model = "gemini-2.5-flash", contents=messages,
-    config=types.GenerateContentConfig(system_instruction=system_prompt, temperature = 0),
+    config=types.GenerateContentConfig(tools=[available_functions],system_instruction=system_prompt, temperature = 0),
     
 
 )
@@ -38,7 +40,11 @@ def main():
     if args.verbose:
         print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
         print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
-    print(response.text)
+    if response.function_calls is not None:
+        for item in response.function_calls:
+            print(f"Calling function: {item.name}({item.args})")  
+    else:
+        print(response.text)
 
 
 if __name__ == "__main__":
