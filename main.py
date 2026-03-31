@@ -8,6 +8,8 @@ from prompts import system_prompt
 
 from call_function import available_functions
 
+from call_function import call_function
+
 
 def main():
 
@@ -42,7 +44,17 @@ def main():
         print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
     if response.function_calls is not None:
         for item in response.function_calls:
-            print(f"Calling function: {item.name}({item.args})")  
+            function_call_result = call_function(item, args.verbose)
+            if function_call_result.parts is None:
+                raise Exception("parts is none")
+            if function_call_result.parts[0].function_response is None:
+                raise Exception("parts response is empty")
+            if function_call_result.parts[0].function_response.response is None:
+                raise Exception("response empty")
+            if args.verbose:
+                print(f"-> {function_call_result.parts[0].function_response.response}")
+             
+
     else:
         print(response.text)
 
