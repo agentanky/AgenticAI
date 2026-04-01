@@ -58,11 +58,13 @@ The magic isn't in the model — it's in the loop and the tools. This project im
 ```
 AgenticAI/
 ├── main.py                  # Entry point + agentic loop
+├── call_function.py         # Function dispatcher + available tools registry
+├── prompts.py               # System prompt definition
 ├── functions/
-│   ├── get_files_info.py    # List directory contents
-│   ├── get_file_content.py  # Read a file (up to 10,000 chars)
-│   ├── write_file.py        # Write or overwrite a file
-│   └── run_python_file.py   # Execute a Python file and capture output
+│   ├── get_files_info.py    # List directory contents + schema
+│   ├── get_file_content.py  # Read a file (up to 10,000 chars) + schema
+│   ├── write_file.py        # Write or overwrite a file + schema
+│   └── run_python_file.py   # Execute a Python file and capture output + schema
 ├── calculator/              # Sample buggy project for the agent to fix
 ├── .env                     # API key (not committed)
 └── pyproject.toml
