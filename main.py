@@ -13,15 +13,11 @@ from call_function import call_function
 
 
 def main():
-
     load_dotenv()
     api_key = os.environ.get("GEMINI_API_KEY")
     if api_key is None:
         raise RuntimeError("unable to located api key")
     client = genai.Client(api_key=api_key)
-
-
-
 
     parser = argparse.ArgumentParser(description="command line tool")
     parser.add_argument("user_prompt", type=str, help="Prompt to send to Gemini")
@@ -68,7 +64,6 @@ def main():
         print(f"model has not produced final response")
         raise SystemExit(1)  
             
-
 
 if __name__ == "__main__":
     main()
