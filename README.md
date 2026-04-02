@@ -1,6 +1,6 @@
 # AgenticAI
 
-> **Status: In Progress** — actively building and extending.
+> **Status: Completed** 
 
 A command-line AI coding agent built in Python using the Google Gemini API — a toy implementation of tools like Claude Code or Cursor's Agent Mode. The agent autonomously reasons, selects tools, and iterates in a feedback loop to find and fix bugs in real projects.
 
